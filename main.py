@@ -30,13 +30,14 @@ def second_exercise():
     def region_name(city):
         region = "undefined"
         for key, value in geo_data.items():
-            if city in value:
-                region = key
+            for town in value:
+                if town in city:
+                    region = key
         return region
 
     db["region"] = db.keyword.apply(region_name)
 
-    print(db["region"].unique())
+    print(db["region"].value_counts())
 
 second_exercise()                   #Второе задание
 
